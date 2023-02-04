@@ -1,0 +1,86 @@
+<h2>Q1</h2>
+<pre>
+	<code>
+		CREATE TABLE IF NOT EXISTS `user` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+<br>
+INSERT INTO `user` (`username`, `password`) VALUES
+('Mohim', '12345'),
+('Naim', '654321'),
+('Fahim', '987654');
+
+	</code>
+</pre>
+<h2>Q2</h2>
+<pre>
+	<code>
+		CREATE TABLE IF NOT EXISTS `manufacturer` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `contact_no` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+<br>
+INSERT INTO `manufacturer` (`id`, `name`, `address`, `contact_no`) VALUES
+(1, 'Mohim', 'Dhaka', '123345'),
+(2, 'ACI Ltd', 'Mirpur', '54321'),
+ (3, 'Nestly', 'Faridpur', '987654');
+ <br>
+ INSERT INTO `manufacturer`(`id`,`name`,`address`) VALUES ("",'Jalal', 'Faridpur'), ("",'Asif','Noakhali');
+ <br>
+ CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `price` int(5) NOT NULL,
+  `manufacturer_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+<br>
+INSERT INTO `product` (`id`, `name`, `price`, `manufacturer_id`) VALUES
+(1, 'Monitor', 5000, 1),
+(2, 'Pc', 10000, 2),
+(3, 'Keyboard', 450, 2),
+(4, 'Laptop', 62000, 3);
+<br>
+insert into `product`(`ID`,`NAME`,`PRICE`,`MANUCTFUCTAR_ID`) VALUES
+( 1,'Monitor', 5000, 1),
+(2,'Pc', 20000,2 ),
+(3,'keyboard',500,2),
+(4,'Phone', 15000,3);
+<br>
+Now create a trigger: (in phpmyadmin)
+CREATE TRIGGER log_manu_del AFTER DELETE on manufacturer
+FOR EACH ROW
+BEGIN
+DELETE FROM product
+    WHERE product.manufacturer_id = old.id;
+END//
+
+
+
+	</code>
+</pre>
+<h2>Q3</h2>
+<pre>
+	<code>
+		CREATE PROCEDURE  `manufact`
+		(
+		IN name VARCHAR(50),
+		IN address VARCHAR(100),
+		IN contact VARCHAR(50)
+		)
+		BEGIN
+		insert into manufacturer values('',name,address,contact);
+		END//
+		
+	</code>
+</pre>
+<h2>Q3</h2>
+<pre>
+	<code>
+		
+	</code>
+</pre>
