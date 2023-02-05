@@ -1,0 +1,100 @@
+<h1>Q1</h1>
+<pre>
+	<code>
+		CREATE TABLE IF NOT EXISTS `user` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+<br><br>
+
+INSERT INTO `user` (`username`, `password`) VALUES
+('faruk', '12345'),
+('monir', '54321'),
+('sohel', '11111');
+
+	</code>
+</pre>
+<br>
+<hr>
+<br>
+<h1>Q2</h1>
+<pre>
+	<code>
+		CREATE TABLE IF NOT EXISTS `manufacturer` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `contact_no` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+<br><br>
+
+INSERT INTO `manufacturer` (`id`, `name`, `address`, `contact_no`) VALUES
+(1, 'monirul', 'Dhaka', '123345'),
+(2, 'ACI Ltd', 'Narayanganj', '027645825'),
+ (3, 'Nestly', 'Chittagong', '01819653298');
+ <br><br>
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `price` int(5) NOT NULL,
+  `manufacturer_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+<br><br>
+INSERT INTO `product` (`id`, `name`, `price`, `manufacturer_id`) VALUES
+(1, 'cd rom', 2000, 1),
+(2, 'mouse', 4700, 2),
+(3, 'printer', 10000, 2),
+(4, 'Laptop', 62000, 3);
+
+	</code>
+</pre>
+<br>
+<hr>
+<br>
+<h1>Q3</h1>
+<pre>
+	<code>
+		CREATE PROCEDURE  `manufact`
+(
+IN name VARCHAR(50),
+IN address VARCHAR(100),
+IN contact VARCHAR(50)
+)
+BEGIN
+insert into manufacturer values('',name,address,contact);
+END//
+
+	</code>
+</pre>
+<br><br>
+<pre>
+	<code>
+		Question4:
+Createview.php
+<?php
+$db=new mysqli("localhost", "root", NULL, "r53_php");
+$createView= "CREATE or replace VIEW products_view AS
+SELECT id, name,price FROM products WHERE price>5000";
+if ($db->query($createView)){
+    echo "View creates successfully";   
+}else echo "error";
+?>
+
+<br><br>
+
+Showview.php
+<?php
+$db=new mysqli("localhost", "root", NULL, "r53_php");
+$q = "select * from products_view";
+$r = $db->query($q);
+while($row = $r->fetch_assoc()){
+    echo "ID : " .  $row['id'] . "<br>";
+    echo "Name : " .  $row['name'] . "<br>";
+    echo "Price : " .  $row['price'] . "<hr>";
+}
+
+
+	</code>
+</pre>
